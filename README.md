@@ -29,6 +29,17 @@ This helps you stay on track with your tasks without needing to open Airtable.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/airtable-todo-mailer.git
-   cd airtable-todo-mailer
+   git clone https://github.com/Prabhu231/To_Do_Remainder.git
+   cd To_Do_Remainder
+   ```
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Use PM2 for scheduling mails and keeping it active**
+   ```bash
+   npm install -g pm2
+   pm2 start index.js --name airtable-mailer
    ```
