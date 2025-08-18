@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-async function fetchAirtableRowsWithRetry(maxRetries = 3, delayMs = 5000) {
+async function fetchAirtableRowsWithRetry(maxRetries = 30, delayMs = 300000) {
   const base = new Airtable({
     apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
   }).base(process.env.AIRTABLE_BASE_ID);
@@ -31,7 +31,7 @@ async function fetchAirtableRowsWithRetry(maxRetries = 3, delayMs = 5000) {
     } catch (error) {
       console.error(`Attempt ${attempt} failed: ${error.code || error}`);
       if (attempt === maxRetries) {
-        throw error; // rethrow if all retries fail
+        throw error;
       }
       await new Promise((res) => setTimeout(res, delayMs));
       console.log(`Retrying... (${attempt + 1}/${maxRetries})`);
